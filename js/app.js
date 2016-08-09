@@ -32,6 +32,8 @@ $(function() {
     var attendance = JSON.parse(localStorage.attendance),
         $allMissed = $('tbody .missed-col'),
         $allCheckboxes = $('tbody input');
+        console.log($allMissed);
+        console.log($allCheckboxes);
 
     // Count a student's missed days
     function countMissing() {
