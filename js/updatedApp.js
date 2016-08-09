@@ -126,56 +126,86 @@ var view = {
 		var numOfStudents = 5;
 
 
-		var labelRow = document.createElement("TR");
-		labelRow.setAttribute('id', 'labelRow');
-		labelRow.setAttribute('class', 'labelRow');
-		this.tbodyELem.appendChild(labelRow);
-		var labelRowElem = document.getElementById('labelRow');
+		var label = document.createElement("TR");
+		///assign id
+		label.setAttribute('id', 'label');
+		///assign class
+		label.setAttribute('class', 'label');
+		///append to tbody element
+		this.tbodyELem.appendChild(label);
+		///create variable to store newly created element
+		var labelElem = document.getElementById('label');
+
 		var nameLabel = document.createElement("TD");
 		nameLabel.setAttribute('id', 'labelRowName');
 		nameLabel.setAttribute('class', 'labelRowName');
 		nameLabel.innerHTML = "Student";
-		labelRowElem.appendChild(nameLabel);
+		labelElem.appendChild(nameLabel);
 		
+		///create a day label for each day
 		for (var i = 0; i < this.numOfDays; i++){
-			var dayColumnLabel = document.createElement("TR");
-			dayColumnLabel.innerHTML = '' + (i + 1);
-			labelRowElem.appendChild(dayColumnLabel);
+			///create the box element, assgin class
+			var newElem = document.createElement("TD");
+			newElem.setAttribute('class', 'day-label');
+			///assign innerHTML
+			newElem.innerHTML = '' + (i + 1);
+			///append the TD element to the label row
+			labelElem.appendChild(newElem);
 		}
+		///create a total day label element, assign class
+		var totalLabel = document.createElement("TD");
+		totalLabel.setAttribute('class', 'totalLabel');
+		///assign innerHTML
+		totalLabel.innerHTML = "Total";
+		///append to the end of the label row
+		labelElem.appendChild(totalLabel);
 
 
 		///create rows for each student
 		for (var y = 0; y < numOfStudents; y++){
+			///create the student Table Row element
 			var student = document.createElement("TR");
+			///assign ID
 			student.setAttribute("id", students[y]);
+			///assign class
 			student.setAttribute("class", "student");
+			///append to tbodyElement
 			this.tbodyELem.appendChild(student);
+			///create a variable to store the newly created element 
 			var studentElem = document.getElementById(students[y]);
-			///student name
-			//var studentName = '<td class="name-col">' + name[x] + '</td>';
+
+			///create the name box, assign class, ID, innerHTML
 			var name = document.createElement("TD");
 			name.setAttribute('class', 'name-col');
 			name.setAttribute('id', 'name');
 			name.innerHTML = students[y];
+			///append to studentRow
 			studentElem.appendChild(name);
-			//var studentName = '<td class="name-col">Sean</td>';
-			//this.tbodyELem.append(studentName)
+
+			///create a checkbox for each day
 			for (var i = 0; i < this.numOfDays; i++){
-				var newElem = '<td class="attend-col"><input type="checkbox"></td>';
+				///create the box element, assign class
 				var newElem = document.createElement("TD");
 				newElem.setAttribute('class', 'attend-col');
+
+				///create an input element, assign type as a checkbox
 				var checkbox = document.createElement('input');
 				checkbox.type = "checkbox";
+				///append to the TD element
 				newElem.appendChild(checkbox);
+				///append the TD element to the student row
 				studentElem.appendChild(newElem);
 				//this.tbodyELem.append(newElem);
 			}
+
+			///create a days missed element, assign ID and class
 			var missedDays = document.createElement("TD");
 			missedDays.setAttribute('id', 'missedDaysTotal');
 			missedDays.setAttribute('class', 'missed-days-col');
+			///initialize to 0
 			missedDays.innerHTML = "0";
+			///add to the end of the student row
 			studentElem.appendChild(missedDays);
-			//this.tbodyELem.append('</tr>')
 		}
 	}
 }
